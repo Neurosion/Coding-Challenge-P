@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculators\BenefitsWithDiscountsCalculatorTests.cs" />
     <Compile Include="Calculators\SalaryCalculatorTests.cs" />
     <Compile Include="Extensions\DecimalExtensionsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
