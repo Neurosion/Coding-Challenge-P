@@ -1,5 +1,6 @@
 ﻿define(function (require) {
     var ko = require("knockout");
+    var utilities = require("utilities");
     var Dependent = require("Dependent");
 
     function Employee() {
@@ -7,6 +8,9 @@
 
         self.firstName = ko.observable();
         self.lastName = ko.observable();
+        self.fullName = ko.computed(function() {
+            return [self.firstName(), self.lastName()].join(" ");
+        });
         self.dependents = ko.observableArray();
         self.hasDependents = ko.computed(function() {
             return self.dependents().length > 0;
@@ -37,6 +41,24 @@
                     return dependent.toApiModel();
                 })
             };
+        };
+
+        self.fromApiModel = function(source) {
+            source = source || {};
+
+            self.firstName(source.firstName);
+            self.lastName(source.lastName);
+
+            source.dependents = source.dependents || [];
+
+            var mappedDependents = source.dependents.map(function(dependent) {
+                var result = new Dependent();
+                result.fromApiModel(dependent);
+
+                return result;
+            });
+
+            self.dependents(mappedDependents);
         };
 
         return self;

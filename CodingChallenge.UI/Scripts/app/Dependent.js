@@ -22,6 +22,12 @@
             };
         };
 
+        self.fromApiModel = function(source) {
+            source = source || {};
+
+            self.firstName(source.firstName);
+            self.lastName(source.lastName);
+        };
 
         return self;
     };

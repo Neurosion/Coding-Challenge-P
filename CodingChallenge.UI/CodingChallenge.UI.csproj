@@ -203,6 +203,10 @@
     <Content Include="Scripts\app\CostPreviewer.js" />
     <Content Include="Scripts\app\Dependent.js" />
     <Content Include="Scripts\app\Employee.js" />
+    <Content Include="Scripts\app\EmployeeCostSummary.js" />
+    <Content Include="Scripts\app\EmployeeCostSummaryCollection.js" />
+    <Content Include="Scripts\app\LineItem.js" />
+    <Content Include="Scripts\app\utilities.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

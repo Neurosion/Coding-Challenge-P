@@ -3,11 +3,14 @@
     var $ = require("jquery");
 
     var Employee = require("Employee");
+    var EmployeeCostSummaryCollection = require("EmployeeCostSummaryCollection");
 
     function CostPreviewer() {
         var self = this;
 
         self.employees = ko.observableArray();
+        self.costSummaries = ko.observable(new EmployeeCostSummaryCollection());
+        
         self.updateCostSummaries = function() {
             var requestData = {
                 Employees: self.employees().map(function(employee) {
@@ -22,6 +25,10 @@
                 data: JSON.stringify(requestData),
                 dataType: "json"
             }).success(function (responseData, status, xhr) {
+                var costSummaries = new EmployeeCostSummaryCollection();
+                costSummaries.fromApiModel(responseData);
+
+                self.costSummaries(costSummaries);
             }).error(function (xhr, status, message) {
                 console.error(status + ": " + message + "\n" + xhr.responseText);
             });
