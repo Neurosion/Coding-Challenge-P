@@ -17,5 +17,12 @@ namespace CodingChallenge.UI
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            GlobalConfiguration.Configuration.UseStructureMap(config =>
+            {
+                config.AddRegistry<MediatR.StructureMap.MediatRRegistry>();
+                config.AddRegistry<ApiRegistry>();
+            });
+        }
     }
 }
