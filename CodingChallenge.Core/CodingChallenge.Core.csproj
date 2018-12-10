@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Calculators\SalaryCalculator.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Extensions\DecimalExtensions.cs" />
     <Compile Include="Calculators\ICostCalculator.cs" />
     <Compile Include="Calculators\LineItem.cs" />
     <Compile Include="People\Employee.cs" />
