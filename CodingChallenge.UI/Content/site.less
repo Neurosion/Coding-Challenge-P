@@ -1,1 +1,101 @@
-
+﻿@fontSize: 14px;
+@largeFontSize: 16px;
+@smallFontSize: 12px;
+@smallerFontSize: 10px;
+
+.panel {
+    margin-bottom: 0px;
+}
+
+.row {
+    margin: auto auto 3px 8px;
+
+    &.total {
+        font-weight: bold;
+
+        &.summary {
+            border-top: solid 1px black;
+        }
+
+        &.grand {
+            margin-top: 10px;
+            font-size: @largeFontSize;
+        }
+    }
+}
+
+.lineItem {
+    font-size: @smallFontSize;
+
+    .lineItemDetails {
+        &:not(.expanded) {
+            display: none;
+        }
+
+        .row{
+            margin-bottom: 3px;
+        }
+    }
+}
+
+.money {
+    text-align: right;
+
+    &:before {
+        content: "$";
+    }
+
+    &.discount {
+        color: red;
+    }
+}
+
+.field {
+    display: inline-block;
+    width: 150px;
+
+    &:not(:first-child) {
+        margin-left: 5px;
+    }
+
+    input {
+        width: 100%;
+    }
+}
+
+.labeled {
+    &:before{
+        display: block;
+        content: attr(data-label);
+        font-size: @smallerFontSize;
+        color: gray;
+    }
+}
+
+.btn {
+    .glyphicon {
+        margin-right: 8px;
+    }
+}
+
+.employees {
+    .employee {
+        margin-top: 10px;
+
+        :nth-child(1) {
+            margin-top: 0px;
+        }
+    }
+}
+
+.dependents {
+    display: none;
+    opacity: 0;
+
+    &.expanded {
+        display: inherit;
+        opacity: 1;
+        margin-top: 8px;
+        transition: all ease-in-out .3s;
+    }
+}
