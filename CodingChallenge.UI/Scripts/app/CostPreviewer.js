@@ -19,7 +19,7 @@
             };
 
             $.ajax({
-                url: "api/Calculate/CostSummary",
+                url: "/api/Calculate/CostSummary",
                 type: "POST",
                 contentType: "application/json; charset=utf-8",
                 data: JSON.stringify(requestData),
