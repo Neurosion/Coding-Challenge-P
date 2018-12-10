@@ -194,6 +194,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\CostPreviewer.js" />
+    <Content Include="Scripts\app\Dependent.js" />
     <Content Include="Scripts\app\Employee.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
