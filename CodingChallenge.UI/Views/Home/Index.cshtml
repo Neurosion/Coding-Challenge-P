@@ -8,6 +8,9 @@
     <div class="col-md-6">
         <div data-bind="template: { name: 'employees-template', data: $data }"></div>
     </div>
+    <div class="col-md-6">
+        <div data-bind="template: { name: 'cost-summaries-template', data: $data }"></div>
+    </div>
 </div>
 
 <script type="text/html" id="employees-template">
@@ -77,6 +80,79 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="cost-summaries-template">
+    <div class="costSummaries panel panel-info">
+        <div class="panel-heading">Cost Preview</div>
+        <!-- ko with: costSummaries -->
+        <!-- ko ifnot: hasItems -->
+        <div class="alert-warning">Enter employees to see cost summaries</div>
+        <!-- /ko -->
+        <!-- ko if: hasItems -->
+        <div data-bind="foreach: items">
+            <div class="row"
+                 data-bind="visible: hasData">
+                <div data-bind="with: employee">
+                    <span data-bind="text: fullName"></span>
+                </div>
+                <div data-bind="foreach: lineItems">
+                    <div class="lineItem">
+                        <div class="row">
+                            <div class="col-md-1">
+                                <span data-bind="click: toggleExpand">
+                                    <span class="glyphicon glyphicon-chevron-right"
+                                          data-bind="visible: isCollapsed"></span>
+                                    <span class="glyphicon glyphicon-chevron-down"
+                                          data-bind="visible: isExpanded"></span>
+                                </span>
+                            </div>
+                            <div class="col-md-7"
+                                 data-bind="text: description"></div>
+                            <div class="col-md-4 money"
+                                 data-bind="text: perAnnumDisplay,
+                                            css: { discount: isDiscount }"></div>
+                        </div>
+                        <div class="lineItemDetails" 
+                             data-bind="foreach: perPayPeriodDisplay,
+                                        css: { expanded: isExpanded }">
+                            <div class="row">
+                                <div class="col-md-2 col-md-offset-2"
+                                     data-label="Pay Period"
+                                     data-bind="text: description,
+                                            css: { labeled: $index() == 0 }"></div>
+                                <div class="col-md-8"
+                                     data-label="Amount"
+                                     data-bind="css: { labeled: $index() == 0 }">
+                                    <span class="money" 
+                                          data-bind="text: value,
+                                                 css: { discount: $parent.isDiscount }"></span>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+                <div class="row summary total">
+                    <div class="col-md-8">Employee Total</div>
+                    <div class="col-md-4 money"
+                            data-bind="text: totalPerAnnumDisplay"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row grand total">
+            <div class="col-md-8">Grand Total</div>
+            <div class="col-md-4 money"
+                    data-bind="text: totalPerAnnumDisplay"></div>
+        </div>
+        <!-- /ko -->
+        <!-- /ko -->
+        <div class="panel-footer">
+            <button class="updateSummary btn btn-primary"
+                    data-bind="click: $parent.updateCostSummaries">
+                <span class="glyphicon glyphicon-refresh"></span>Update
+            </button>
         </div>
     </div>
 </script>
