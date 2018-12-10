@@ -17,6 +17,28 @@
         self.addDependent = function () {
             self.dependents.push(new Dependent());
         };
+
+        self.hasData = ko.computed(function () {
+            var result = [self.firstName(), self.lastName()].some(function (item) {
+                return !utilities.isEmptyString(item);
+            });
+
+            return result;
+        });
+
+        self.toApiModel = function () {
+            if (!self.hasData())
+                return null;
+
+            return {
+                FirstName: self.firstName(),
+                LastName: self.lastName(),
+                Dependents: self.dependents().map(function (dependent) {
+                    return dependent.toApiModel();
+                })
+            };
+        };
+
         return self;
     };
 
