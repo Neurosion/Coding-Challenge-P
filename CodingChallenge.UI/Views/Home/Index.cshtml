@@ -1,3 +1,46 @@
 ﻿@{
     Layout = "../Shared/_Layout.cshtml";
-}
+}
+@section Scripts{
+    <script data-main="../../Scripts/app/app" src="../../Scripts/require.js"></script>
+}
+<div id="preview-container" class="row">
+    <div class="col-md-6">
+        <div data-bind="template: { name: 'employees-template', data: $data }"></div>
+    </div>
+</div>
+
+<script type="text/html" id="employees-template">
+    <div class="employees panel panel-primary">
+        <div class="panel-heading">Employee Entry</div>
+        <div class="panel-body"
+             data-bind="foreach: employees">
+            <div class="employee panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="field">
+                            <span class="labeled"
+                                  data-label="First Name">
+                                <input type="text"
+                                       data-bind="value: firstName"/>
+                            </span>
+                        </div>
+                        <div class="field">
+                            <span class="labeled"
+                                  data-label="Last Name">
+                                <input type="text"
+                                       data-bind="value: lastName"/>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <button class="addMore btn btn-primary"
+                    data-bind="click: addEmployee">
+                <span class="glyphicon glyphicon-plus"></span>Add Employee
+            </button>
+        </div>
+    </div>
+</script>
